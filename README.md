@@ -99,10 +99,13 @@ aws-cicd-elasticbeanstalk/
 ├── aws-files/
 │   └── buildspec.yml
 │
-├── src/
-│   └── application-source-code
+├── application-source-code/
+│   ├── src/
+│   ├── pom.xml
+│   └── settings.xml
 │
 ├── docs/
+│   ├── parameter-store-setup.md
 │   ├── elasticbeanstalk-deployment.md
 │   ├── codepipeline-setup.md
 │   └── rds-setup.md
@@ -143,6 +146,25 @@ Elastic Beanstalk simplifies application deployment by automatically provisionin
 * Deployment management
 
 Application versions are deployed directly from **CodePipeline**.
+
+---
+
+## 🔐 Secret Management
+
+This project uses **AWS Systems Manager Parameter Store** to securely manage application secrets and configuration.
+
+Sensitive values such as database credentials, RabbitMQ, Memcached, and Elasticsearch configurations are **not stored in the repository**.
+
+Instead:
+
+* Secrets are stored in Parameter Store
+* Retrieved securely during build using IAM roles
+* Injected as environment variables into the application
+
+👉 For complete setup instructions, refer to:
+
+📄 [Parameter Store Setup Guide](docs/parameter-store-setup.md)
+
 
 ---
 

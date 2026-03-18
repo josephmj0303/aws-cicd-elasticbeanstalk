@@ -121,9 +121,13 @@ The application build is handled by **AWS CodeBuild** using a `buildspec.yml` fi
 Build stages:
 
 1️⃣ Install dependencies
+
 2️⃣ Compile application
+
 3️⃣ Package application artifact
+
 4️⃣ Upload artifact to S3
+
 5️⃣ Deploy through Elastic Beanstalk
 
 ---

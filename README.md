@@ -1,142 +1,217 @@
-# AWS CI/CD Project – Elastic Beanstalk Deployment
+# AWS CI/CD Pipeline – Elastic Beanstalk Deployment
+![AWS](https://img.shields.io/badge/AWS-CodePipeline-orange?logo=amazon-aws)
+![Build](https://img.shields.io/badge/Build-CodeBuild-yellow?logo=amazon-aws)
+![Deploy](https://img.shields.io/badge/Deploy-ElasticBeanstalk-green?logo=amazon-aws)
+![Database](https://img.shields.io/badge/DB-RDS-blue)
+![CI/CD](https://img.shields.io/badge/CI/CD-Automated-success)
+![License](https://img.shields.io/badge/License-MIT-lightgrey)
 
-## 📌 Overview
-This project demonstrates a complete **AWS CI/CD pipeline** for deploying a Java-based web application using **AWS native DevOps services**.
+A production-style **CI/CD pipeline implementation on AWS** that automatically builds and deploys an application using **AWS CodePipeline, AWS CodeBuild, and AWS Elastic Beanstalk**.
 
-The **application source code is maintained in Bitbucket**, while this repository focuses on:
-- CI/CD pipeline design
-- Build automation
-- Artifact management
-- Automated deployment
-- Production-ready AWS architecture
-
----
-
-## 🏗 Architecture Overview
-
-![AWS CI/CD Architecture](architecture/aws-ci-cd-architecture.png)
-
-### CI Flow
-![Continuous Integration](architecture/continuous-integration.png)
-
-### CD Flow
-![Continuous Delivery](architecture/continuous-delivery.png)
+This project demonstrates how modern DevOps pipelines automate application delivery from source code commit to production deployment.
 
 ---
 
-## 🔁 CI/CD Pipeline Flow
+# 🚀 Project Overview
 
-1. **Developer commits code** to Bitbucket
-2. **AWS CodePipeline** detects changes
-3. **AWS CodeBuild (Build Stage)**  
-   - Builds application  
-   - Publishes artifact to S3  
-4. **AWS Elastic Beanstalk**  
-   - Pulls artifact from S3  
-   - Deploys application
-5. **Amazon RDS**  
-   - Backend database
+This project implements a **fully automated CI/CD pipeline** for deploying a web application using AWS managed services.
 
----
+The pipeline performs the following steps:
 
-## 🧰 AWS Services Used
+1. Developer pushes code to **Bitbucket repository**
+2. **AWS CodePipeline** detects the change
+3. Code is sent to **AWS CodeBuild**
+4. Application build artifacts are generated
+5. Artifacts are stored in **Amazon S3**
+6. **AWS Elastic Beanstalk** deploys the new application version
+7. Application runs on EC2 instances and connects to **Amazon RDS**
 
-| Service | Purpose |
-|------|--------|
-| AWS CodePipeline | Orchestrates CI/CD workflow |
-| AWS CodeBuild | Build & test automation |
-| AWS Elastic Beanstalk | Application deployment |
-| Amazon S3 | Artifact storage |
-| Amazon RDS | Application database |
-| AWS IAM | Secure access control |
+The result is an automated deployment pipeline that enables **fast and reliable application releases**.
 
 ---
 
-## 📦 Repository Structure
+# 🏗 Architecture Diagram
+
+![Architecture](architecture/aws-cicd-architecture.png)
+
+---
+
+# ⚙️ Technology Stack
+
+| Component            | Technology            |
+| -------------------- | --------------------- |
+| Source Control       | Bitbucket             |
+| CI/CD Orchestration  | AWS CodePipeline      |
+| Build Service        | AWS CodeBuild         |
+| Artifact Storage     | Amazon S3             |
+| Application Platform | AWS Elastic Beanstalk |
+| Compute              | Amazon EC2            |
+| Database             | Amazon RDS            |
+| Monitoring           | Amazon CloudWatch     |
+
+---
+
+# 🔄 CI/CD Pipeline Workflow
+
+The deployment pipeline follows this workflow:
 
 ```
-aws-ci-cd-elastic-beanstalk/
-├── README.md
+Developer
+   │
+   ▼
+Bitbucket Repository
+   │
+   ▼
+AWS CodePipeline
+   │
+   ├── Source Stage
+   │
+   ├── Build Stage (CodeBuild)
+   │
+   └── Deploy Stage
+           │
+           ▼
+    AWS Elastic Beanstalk
+           │
+           ▼
+        EC2 Instances
+           │
+           ▼
+        Amazon RDS
+```
+
+---
+
+# 📦 Repository Structure
+
+```
+aws-cicd-elasticbeanstalk/
+│
 ├── architecture/
-│   ├── aws-ci-cd-architecture.png
-│   ├── continuous-integration.png
-│   ├── continuous-delivery.png
-│
-├── pipeline/
-│   ├── buildspec.yml
-│   ├── codepipeline-config.md
-│
-├── elastic-beanstalk/
-│   ├── environment-config.md
-│   ├── deployment-strategy.md
+│   ├── aws-cicd-architecture.png
+│   └── pipeline-overview.png
 │
 ├── screenshots/
-│   ├── codepipeline-success.png
-│   ├── codebuild-success.png
-│   ├── elastic-beanstalk-home.png
-│   ├── elastic-beanstalk-login.png
+│   ├── app-login.png
+│   ├── app-home.png
+│   └── cicd-pipeline.png
 │
-└── docs/
-    ├── services-used.md
-    ├── security-and-iam.md
-    ├── cost-and-free-tier.md
+├── aws-files/
+│   └── buildspec.yml
+│
+├── src/
+│   └── application-source-code
+│
+├── docs/
+│   ├── elasticbeanstalk-deployment.md
+│   ├── codepipeline-setup.md
+│   └── rds-setup.md
+│
+├── README.md
+├── LICENSE
+└── .gitignore
 ```
----
-
-📸 Pipeline Execution Evidence
-
-CodePipeline – Successful Execution
-
-Elastic Beanstalk – Application Home
-
-Elastic Beanstalk – Login Page
 
 ---
 
-🔐 Security & IAM
+# 🔧 Build Process (CodeBuild)
 
-* IAM roles with least privilege
+The application build is handled by **AWS CodeBuild** using a `buildspec.yml` file.
 
-* CodePipeline service role
+Build stages:
 
-* CodeBuild execution role
-
-* Elastic Beanstalk EC2 role
-
-Details: docs/security-and-iam.md
-
----
-
-💰 Cost Considerations
-
- * Uses AWS Free Tier
-
-* Elastic Beanstalk → EC2 t2.micro
-
-* RDS → db.t3.micro
-
-* S3 storage minimal
-
-* CodePipeline free for first pipeline
-
-Details: docs/cost-and-free-tier.md
+1️⃣ Install dependencies
+2️⃣ Compile application
+3️⃣ Package application artifact
+4️⃣ Upload artifact to S3
+5️⃣ Deploy through Elastic Beanstalk
 
 ---
 
-🧠 Key DevOps Concepts Demonstrated
+# 🚀 Deployment using Elastic Beanstalk
 
-* CI/CD automation
+Elastic Beanstalk simplifies application deployment by automatically provisioning:
 
+* EC2 instances
+* Load balancer
+* Auto Scaling
+* Health monitoring
+* Deployment management
+
+Application versions are deployed directly from **CodePipeline**.
+
+---
+
+# 🖥 Application Screenshots
+
+### Login Page
+
+![Login](screenshots/app-login.png)
+
+---
+
+### Application Dashboard
+
+![Home](screenshots/app-home.png)
+
+---
+
+### CI/CD Pipeline Execution
+
+![Pipeline](screenshots/cicd-pipeline.png)
+
+---
+
+# 📊 DevOps Concepts Demonstrated
+
+This project demonstrates key DevOps practices:
+
+* CI/CD pipeline automation
+* Infrastructure managed by AWS services
+* Automated build and deployment
 * Artifact management
-
-* Infrastructure abstraction
-
-* Production-style deployment
+* Environment configuration
+* Continuous delivery pipeline
 
 ---
 
-📌 Note
+# 🔐 Security Considerations
 
-This repository contains only DevOps artifacts.
+The deployment includes the following security controls:
 
-Application source code is maintained securely in Bitbucket.
+* IAM roles for CodePipeline and CodeBuild
+* Secure database connectivity
+* Controlled deployment permissions
+* AWS managed infrastructure security
+
+---
+
+# 📈 Possible Improvements
+
+Future improvements for this project include:
+
+* Infrastructure as Code using Terraform
+* Blue/Green deployments
+* Monitoring dashboards
+* Containerized deployment using ECS/EKS
+* GitHub Actions integration
+
+---
+
+# 🎯 Learning Outcomes
+
+Through this project the following skills were demonstrated:
+
+* Designing CI/CD pipelines on AWS
+* Automating application deployment
+* Using managed platform services
+* Integrating build and deployment tools
+* Production-style DevOps workflow
+
+---
+
+# 👨‍💻 Author
+
+DevOps Engineer Portfolio Project
+
+AWS | CI/CD | Kubernetes | Cloud Infrastructure

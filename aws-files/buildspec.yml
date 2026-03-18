@@ -1,0 +1,51 @@
+version: 0.2
+
+env:
+  parameter-store:
+    DB_URL: "/vprofile/db/url"
+    DB_USERNAME: "/vprofile/db/username"
+    DB_PASSWORD: "/vprofile/db/password"
+
+```
+    MEMCACHED_HOST: "/vprofile/memcached/host"
+    MEMCACHED_PORT: "/vprofile/memcached/port"
+    MEMCACHED_STANDBY_HOST: "/vprofile/memcached/standby-host"
+    MEMCACHED_STANDBY_PORT: "/vprofile/memcached/standby-port"
+
+    RABBITMQ_HOST: "/vprofile/rabbitmq/host"
+    RABBITMQ_PORT: "/vprofile/rabbitmq/port"
+    RABBITMQ_USERNAME: "/vprofile/rabbitmq/username"
+    RABBITMQ_PASSWORD: "/vprofile/rabbitmq/password"
+
+    ELASTIC_HOST: "/vprofile/elasticsearch/host"
+    ELASTIC_PORT: "/vprofile/elasticsearch/port"
+    ELASTIC_CLUSTER: "/vprofile/elasticsearch/cluster"
+    ELASTIC_NODE: "/vprofile/elasticsearch/node"
+```
+
+phases:
+
+  install:
+    runtime-versions:
+      java: corretto17
+    commands:
+      - echo "Using AWS CodeBuild managed runtime"
+
+  pre_build:
+    commands:
+      - echo "Pre-build phase started"
+
+  build:
+    commands:
+      - echo "Build started"
+      - mvn clean install
+
+  post_build:
+    commands:
+      - echo "Build completed"
+      - mvn package
+
+artifacts:
+  files:
+    - vprofile-v2.war
+  base-directory: target

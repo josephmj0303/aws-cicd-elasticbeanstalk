@@ -12,7 +12,7 @@ This project demonstrates how modern DevOps pipelines automate application deliv
 
 ---
 
-# 🚀 Project Overview
+## 🚀 Project Overview
 
 This project implements a **fully automated CI/CD pipeline** for deploying a web application using AWS managed services.
 
@@ -30,13 +30,13 @@ The result is an automated deployment pipeline that enables **fast and reliable 
 
 ---
 
-# 🏗 Architecture Diagram
+## 🏗 Architecture Diagram
 
 ![Architecture](architecture/aws-cicd-architecture.png)
 
 ---
 
-# ⚙️ Technology Stack
+## ⚙️ Technology Stack
 
 | Component            | Technology            |
 | -------------------- | --------------------- |
@@ -51,7 +51,7 @@ The result is an automated deployment pipeline that enables **fast and reliable 
 
 ---
 
-# 🔄 CI/CD Pipeline Workflow
+## 🔄 CI/CD Pipeline Workflow
 
 The deployment pipeline follows this workflow:
 
@@ -82,7 +82,7 @@ AWS CodePipeline
 
 ---
 
-# 📦 Repository Structure
+## 📦 Repository Structure
 
 ```
 aws-cicd-elasticbeanstalk/
@@ -117,7 +117,7 @@ aws-cicd-elasticbeanstalk/
 
 ---
 
-# 🔧 Build Process (CodeBuild)
+## 🔧 Build Process (CodeBuild)
 
 The application build is handled by **AWS CodeBuild** using a `buildspec.yml` file.
 
@@ -135,7 +135,7 @@ Build stages:
 
 ---
 
-# 🚀 Deployment using Elastic Beanstalk
+## 🚀 Deployment using Elastic Beanstalk
 
 Elastic Beanstalk simplifies application deployment by automatically provisioning:
 
@@ -168,7 +168,7 @@ Instead:
 
 ---
 
-# 🖥 Application Screenshots
+## 🖥 Application Screenshots
 
 ### Login Page
 
@@ -188,7 +188,7 @@ Instead:
 
 ---
 
-# 📊 DevOps Concepts Demonstrated
+## 📊 DevOps Concepts Demonstrated
 
 This project demonstrates key DevOps practices:
 
@@ -201,7 +201,7 @@ This project demonstrates key DevOps practices:
 
 ---
 
-# 🔐 Security Considerations
+## 🔐 Security Considerations
 
 The deployment includes the following security controls:
 
@@ -212,7 +212,7 @@ The deployment includes the following security controls:
 
 ---
 
-# 📈 Possible Improvements
+## 📈 Possible Improvements
 
 Future improvements for this project include:
 
@@ -224,7 +224,7 @@ Future improvements for this project include:
 
 ---
 
-# 🎯 Learning Outcomes
+## 🎯 Learning Outcomes
 
 Through this project the following skills were demonstrated:
 
@@ -236,7 +236,7 @@ Through this project the following skills were demonstrated:
 
 ---
 
-# 👨‍💻 Author
+## 👨‍💻 Author
 
 DevOps Engineer Portfolio Project
 

@@ -1,4 +1,4 @@
-# AWS Parameter Store & Environment Configuration
+## AWS Parameter Store & Environment Configuration ##
 
 This document describes how application secrets and configuration values are managed securely using AWS Systems Manager Parameter Store and Elastic Beanstalk environment variables.
 

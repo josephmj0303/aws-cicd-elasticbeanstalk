@@ -1,4 +1,4 @@
-# AWS CodePipeline Setup Guide
+## AWS CodePipeline Setup Guide ##
 
 This document describes how the CI/CD pipeline is configured using AWS CodePipeline.
 

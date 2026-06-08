@@ -236,6 +236,15 @@ Through this project the following skills were demonstrated:
 
 ---
 
+## 🔒 Source Code Notice
+This repository intentionally excludes application source code:
+
+- To simulate real-world enterprise practices
+- To protect application-level intellectual property
+- To focus this project on DevOps engineering capabilities
+  
+---
+
 ## 👨‍💻 Author
 
 DevOps Engineer Portfolio Project
